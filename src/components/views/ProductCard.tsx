@@ -7,17 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-// import brushed from "../../../public/brushedRaglan.png";
-// import cameryn from "../../../public/Cameryn.png";
-// import flexSweatshirt from "../../../public/FlexSweatshirt.png";
-// import flexSweatpant from "../../../public/FlexSweatpants.png";
-// import pinkFleece from "../../../public/pinkFleeceSweatpants.png";
-// import liteSweatpants from "../../../public/liteSweatpants.png";
-// import imperialAlpacaHoodie from "../../../public/imperialAlpacaHoodie.png";
-// import flexPushButtonBomber from "../../../public/flexPushButtonBomber.png";
-// import muscleTank from "../../../public/muscleTank.png";
-// import brushedBomber from "../../../public/brushedbomber.png";
-// import raglanSweatshirt from "../../../public/raglanSweatshirt.png";
+
 import Image from "next/image";
 import { urlForImage } from "../../../sanity/lib/image";
 import { Image as IImage } from "sanity";
@@ -26,24 +16,15 @@ import { client } from "../../../sanity/lib/client";
 
 async function GetData() {
   const res = await client.fetch(
-    `*[_type ==   "product"]{title,price,price1,category->{name},image,"urlImage":image.asset->url,_id}`
+    `*[_type ==   "product"]{title,price,alt,category->{name},image,"urlImage":image.asset->url,_id}`
   );
   return res;
 }
 
-// async function GetData() {
-//   const res = await client.fetch(
-//     `*[_type == "product"]{title,price,price1,category->{name},image,"urlImage":image.asset->url,_id}`,
-//     {
-//       cache: "no-store",
-//     }
-//   );
-//   return res;
-// }
-
 interface IProduct {
   title: string;
   price: number;
+  alt: string;
   price1: number;
   category: { name: string };
   image: IImage;
@@ -70,7 +51,7 @@ const ProductCard = async () => {
                 className="md:basis-1/2 w-[90%] xl:basis-1/3 flex flex-col justify-center items-center"
               >
                 <div className="font-bold ">
-                  <Link href={`/${product.category.name}`}>
+                  <Link href={`/products/${product.alt}`}>
                     <Image
                       src={urlForImage(product.image).url()}
                       alt={product.title}
@@ -79,7 +60,7 @@ const ProductCard = async () => {
                     />
                     <h1 className="pt-2">{product.title}</h1>
                     <p>${product.price}</p>
-                    <p>${product.price1}</p>
+                    {/* <p>${product.price1}</p> */}
                     <p>{product.category.name}</p>
                   </Link>
                 </div>

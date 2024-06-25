@@ -5,6 +5,26 @@ export const products = {
   title: "Product",
   type: "document",
   fields: [
+    defineField({
+      name: "id",
+      title: "Product id",
+      type: "string",
+    }),
+    // defineField({
+    //   name: "quantity",
+    //   title: "Quantity",
+    //   type: "number",
+    // }),
+    // {
+    //   name: "details",
+    //   type: "string",
+    //   title: "Product Details",
+    // },
+    // {
+    //   name: "care",
+    //   type: "string",
+    //   title: "Product Care",
+    // },
     {
       name: "title",
       title: "Title",
@@ -15,15 +35,15 @@ export const products = {
       type: "number",
       title: "Price",
     }),
-    defineField({
-      name: "price1",
-      type: "number",
-      title: "Price",
-    }),
+    {
+      name: "alt",
+      type: "string",
+      title: "Image Alt",
+    },
 
     defineField({
       name: "image",
-      title: "Image",
+      title: "image",
       type: "image",
     }),
 
@@ -36,5 +56,27 @@ export const products = {
         title: "Category",
       },
     }),
+    // defineField({
+    //   name: "ptype",
+    //   title: "Product Type",
+    //   type: "reference",
+    //   to: [
+    //     {
+    //       type: "ptype",
+    //     },
+    //   ],
+    // }),
+    // defineField({
+    //   name: "pcare",
+    //   title: "Product Care",
+    //   type: "array",
+    //   of: [
+    //     {
+    //       name: "list",
+    //       title: "List",
+    //       type: "string",
+    //     },
+    //   ],
+    // }),
   ],
 };
