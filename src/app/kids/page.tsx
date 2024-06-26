@@ -7,7 +7,7 @@ import Link from "next/link";
 
 async function getData() {
   const res = await client.fetch(`*[_type=="product" && category->name=="kids"]{
-    title,image,alt,price,_id,category->{name},ptype->{name}}`);
+    title,image,alt,price,_id,category->{name},ptype->{name},"urlImage":image.asset->url,_id}`);
   return res;
 }
 

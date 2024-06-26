@@ -8,7 +8,7 @@ import Link from "next/link";
 async function getData() {
   const res =
     await client.fetch(`*[_type=="product" && category->name=="female"]{
-    title,image,alt,price,_id,category->{name},ptype->{name}}`);
+    title,image,alt,price,_id,category->{name},ptype->{name},"urlImage":image.asset->url,_id}`);
   return res;
 }
 
@@ -32,7 +32,7 @@ export default async function Home() {
     <div className="flex justify-center items-center max-w-screen-2xl w-full">
       <div className=" py-10 max-w-screen-2xl w-full mx-auto">
         <div className="flex flex-wrap justify-center sm:justify-between gap-y-10 px-[8.5%]">
-          {data.map((item) => (
+          {data.map((item: IProduct) => (
             <div key={item._id} className="font-bold  lg:px-2 px-1 ">
               <Link href={`/products/${item.alt}`}>
                 <Image
